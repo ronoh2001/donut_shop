@@ -8,15 +8,23 @@ function donutShop(loc, minCPH, maxCPH, Avg) {
   this.randomCust = function() {
     return Math.floor(Math.random() * (this.maxCPH - this.minCPH) + this.minCPH);
   }
-  hourlyRandom = [];
-  this.AverageDonutsPerHour = function() {
-     for (i=0; i<11; i++) 
-      return this.Avg * this.randomCust(i);
-    hourlyRandom.push(this.AverageDonutsPerHour);
+// var hourly = []
+// var sum = []
 
-  console.log(hourlyRandom);
-  }
-}
+//   this.donutsPerHour = function() {
+//      for (var i=0; i<11; i++) {
+//       var hourly = Math.round(this.randomCust()*this.Avg);
+//       this.hourlyDonuts.push(hourly);
+//       }
+//      }
+//      this.donutsPerDay = function () {
+//     var sum = 0;
+//     for (var i = 0; i < this.hourlyDonuts.length; i++) {
+//       sum += this.hourlyDonuts[i];
+//     }
+//     this.dailyDonuts.push(sum);
+//   }
+// }
 
   var Downtown = new donutShop('Downtown', 8, 43, 4.5);
   var capitalHill = new donutShop ('Capital Hill', 4, 37, 2.00);
@@ -78,33 +86,34 @@ function donutShop(loc, minCPH, maxCPH, Avg) {
      var td3 = document.createElement('td');
      var td4 = document.createElement('td');
      var td5 = document.createElement('td');
-     var td6 = document.createElement('td');
-     var td7 = document.createElement('td');
+     // var td6 = document.createElement('td');
+     // var td7 = document.createElement('td');
      var randomCust = donut.randomCust();
-     var AverageDonutsPerHour = donut.AverageDonutsPerHour();
-      console.log(randomCust);
+     // var donutsPerHour = donut.donutsPerHour();
+     //  console.log(randomCust);
 
      td1.textContent = donut.loc;
      td2.textContent = donut.minCPH;
      td3.textContent = donut.maxCPH;
      td4.textContent = donut.Avg; 
      td5.textContent = randomCust;
-     td6.textContent = AverageDonutsPerHour;
-     td7.textContent = totalDonutsPerday;
+     // td6.textContent = AverageDonutsPerHour;
+     // td7.textContent = totalDonutsPerday;
 
      row.appendChild(td1);
      row.appendChild(td2);
  	   row.appendChild(td3);
      row.appendChild(td4);
      row.appendChild(td5);
-     row.appendChild(td6);
-     row.appendChild(td7);
+     // row.appendChild(td6);
+     // row.appendChild(td7);
 
 
      shopTable.appendChild(row);
    });
 
    document.body.appendChild(shopTable);
+ }
 
 // = ['Downtown', 'Capital Hill', 'South Lake Union', 'Wedgewood', 'Ballard'];
 // var 
