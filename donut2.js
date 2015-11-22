@@ -1,3 +1,4 @@
+
 function shop(location,minCustomersPerHour, maxCustomersPerHour, avgDonutsPerCustomer) {
  this.location = location;
  this.minCustomersPerHour = minCustomersPerHour;
@@ -9,7 +10,7 @@ function shop(location,minCustomersPerHour, maxCustomersPerHour, avgDonutsPerCus
  this.hourlyDonuts = [];
  this.dailyDonuts =[];
  this.getAvgDonutSellForHourly = function(){
-   for (var i = 0; i < 12; i++) {
+   for (var i = 0; i < 13; i++) {
      var hourly = Math.round(this.avgDonutsPerCustomer * this.getRandomCustomer());
      this.hourlyDonuts.push(hourly);
   }
@@ -27,10 +28,10 @@ function shop(location,minCustomersPerHour, maxCustomersPerHour, avgDonutsPerCus
     }
     this.dailyDonuts.push(sum);
  };
-
    this.getTableRow = function() {
      var tr = "<tr>";
      console.log(tr);
+     tr += '<td>' + this.location + '</td>'
      this.hourlyDonuts.forEach(function(nDonut) {
          tr += "<td>" + nDonut + "</td>";
          console.log(tr);
@@ -44,11 +45,6 @@ function shop(location,minCustomersPerHour, maxCustomersPerHour, avgDonutsPerCus
 
 };
 
-
-
-
-
-
 var downTown = new shop("Downtown",8,43,4.50);
 
 var capitolHill = new shop("Capitol Hill",4,37,2.00);
@@ -56,6 +52,7 @@ var southLakeUnion = new shop("Sounth Lake Union", 9,23,6,33);
 var wedgeWood = new shop("Wedgewood",2,28,1.25);
 var ballard = new shop("Ballard",8,5,3.75);
 var shops = [downTown, capitolHill, southLakeUnion, wedgeWood, ballard];
+
 
 var table = "<table>  <tr>  <th>Location</th>  <th>8 AM</th>  <th>9 AM</th>  " +
 "<th>10 AM</th>  <th>11 AM</th>  <th>12 PM</th>  <th>1 PM</th><th>2 PM</th> "+
@@ -74,6 +71,18 @@ shops.forEach(function(aShop) {
 table += "</table>";
 var container = document.getElementById("container");
 container.innerHTML = table;
+
+
+function myFunction() {
+    var x = document.createElement("IMG");
+    x.setAttribute("src", "donut.jpg");
+    x.setAttribute("width", "304");
+    x.setAttribute("width", "228");
+
+    document.body.appendChild(x);
+}
+
+  
 //["Downtown", "Capitol Hill", "South Lake Union", "Wedgewood", 'Ballard'];[8 , 4, 9, 2, 8];[43, 37, 23, 28, 58];
 
 //[4.50, 2.00, 6.33, 1.25, 3.75];
