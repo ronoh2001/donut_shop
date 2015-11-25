@@ -6,13 +6,33 @@
 </head>
 <body>
 <h1>Top Pot Donut Productivity</h1>
+<canvas id='myChart' height='400' width='400'></canvas>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js'></script>
+
 <span id="container"></span>
 <script type="text/javascript" src="donut2.js"></script>
 
 
 <link rel="stylesheet" href="text.css">
 
-<button onclick="myFunction()">NAKE DONUTS!</button>
+<form>
+  Location:
+  <input id="loc">
+  
+  Min Customers Per hour:
+  <input id="min">
+  <br>Max Customers Per hour:
+
+  <input id="max">
+
+  Average Donuts per Customer:
+  <input id="avg">
+
+</form>
+
+<!-- <button id='generator' onclick='generate()'>Generate New Shop </button>
+ --><button id='donutmaker' onclick="myFunction()">MAKE DONUTS!</button>
 
 </body>
 </html>
