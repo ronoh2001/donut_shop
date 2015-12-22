@@ -6,15 +6,41 @@ h1{
 	border-style: solid;
 
 }
-
 table{
-	border-style: solid; 
-	background-color: pink;
+	border-style: inset;
 }
+
+
 tr{
-	background-color: cyan;
+	background-color: #C6F7D9;
 	text-align: center
 }
+#logo{
+	position: absolute;
+    left: 0px;
+}
+#mat{
+	position: absolute;
+    right: 0px;
+}
+#links{
+	text-align: center;
+	font-size: 20px;
+	font-family: serif;
+
+}
 body{
-	background-color: #86d4de;
+	
+	background-color: #F7F5BA;
+	background-image: url("placemat.jpg");
+	background-repeat: no-repeat;
+	background-size: 40%;
+    padding:50px;
+    background-position: 75% 45%; 
+    
+}
+
+#foot{
+	font-family: serif;
+	font-size: 25px;
 }

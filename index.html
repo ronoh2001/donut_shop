@@ -5,34 +5,52 @@
 
 </head>
 <body>
-<h1>Top Pot Donut Productivity</h1>
-<canvas id='myChart' height='400' width='400'></canvas>
+  <img id= 'logo' src='topPotLogo.jpg' height= 100px width = 100px>
+  <img id= 'mat' src='topPotLogo.jpg' height= 100px width = 100px>
+  <div id="links">
+   <a href="http://www.toppotdoughnuts.com">Visit Us</a>
+   <a href="http://www.toppotdoughnuts.com/about-us.html">Our Story</a>
+   <a href="http://www.toppotdoughnuts.com/doughnuts.html">Doughnuts!</a>
+   <a href="http://www.toppotdoughnuts.com/coffee.html">Coffee</a>
+  </div>
+  <br>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js'></script>
+  <h1>Top Pot Donut Productivity</h1>
 
-<span id="container"></span>
-<script type="text/javascript" src="donut2.js"></script>
+  <span id = "container"></span>
+
+  <link rel = "stylesheet" href = "text.css">
+
+  <canvas id ='myChart' height = '400' width = '400'></canvas>
+  <script src ='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js'></script>
+
+  <br>
 
 
-<link rel="stylesheet" href="text.css">
+<form id = "addShop">
+  <fieldset>
+    <legend>New Location</legend>
 
-<form>
-  Location:
-  <input id="loc">
-  
-  Min Customers Per hour:
-  <input id="min">
-  <br>Max Customers Per hour:
-
-  <input id="max">
-
-  Average Donuts per Customer:
-  <input id="avg">
-
+    <label for = "location">Location: </label>
+    <input id = "loc" type = "text">
+    <br>
+    <label for = "min">Min Customer Per Hour: </label>
+    <input id = "min" type = "text">
+    <br>
+    <label for = "max">Max Customer Per Hour: </label>
+    <input id = "max" type = "text">
+    <br>
+    <label for = "avg">Average Donuts Per Customer</label>
+    <input id = "avg" type = "text">
+    <button id = "addingbotton" type = "submit">Analyze</button>
+  </fieldset>
 </form>
+<script type = "text/javascript" src = "donut.js"></script>
 
-<!-- <button id='generator' onclick='generate()'>Generate New Shop </button>
- --><button id='donutmaker' onclick="myFunction()">MAKE DONUTS!</button>
+<button onclick="myFunction()">Make Donuts</button>
 
 </body>
+<footer>
+  <p id='foot'> Designed by Ron Oh CodeFellows 201</p>
+  </footer>
 </html>

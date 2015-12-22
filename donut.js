@@ -1,119 +1,162 @@
 
-function donutShop(loc, minCPH, maxCPH, Avg) {
-	this.loc = loc;
-	this.minCPH = minCPH;
-	this.maxCPH = maxCPH;
-	this.Avg = Avg;
 
-  this.randomCust = function() {
-    return Math.floor(Math.random() * (this.maxCPH - this.minCPH) + this.minCPH);
-  }
-// var hourly = []
-// var sum = []
+function shop(location, minCustomersPerHour, maxCustomersPerHour, avgDonutsPerCustomer) {
+  this.location = location;
+  this.minCustomersPerHour = minCustomersPerHour;
+  this.maxCustomersPerHour = maxCustomersPerHour;
+  this.avgDonutsPerCustomer = avgDonutsPerCustomer;
+  this.getRandomCustomer= function() {
+    return Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour+1)) + this.minCustomersPerHour;
+  };
+  this.hourlyDonuts = [];
+  this.dailyDonuts =[];
+  this.getAvgDonutSellForHourly = function(){
+    for (var i = 0; i < 12; i++) {
+      var hourly = Math.round(this.avgDonutsPerCustomer * this.getRandomCustomer());
+      this.hourlyDonuts.push(hourly);
+   }
+   return this.hourlyDonuts;
+ };
+  /*this.donutsPerDay = function() {
+  var sum = this.hourlyDonuts.reduce(function(total,next){
+    return total + next
+  });
+  };
+  };*/
+  this.getDonutsPerDay = function() {
+     var sum =0;
+     for (var i=0; i<this.hourlyDonuts.length; i++) {
+        sum +=this.hourlyDonuts[i];
+     }
+     this.dailyDonuts.push(sum);
+     return this.dailyDonuts;
+  };
 
-//   this.donutsPerHour = function() {
-//      for (var i=0; i<11; i++) {
-//       var hourly = Math.round(this.randomCust()*this.Avg);
-//       this.hourlyDonuts.push(hourly);
-//       }
-//      }
-//      this.donutsPerDay = function () {
-//     var sum = 0;
-//     for (var i = 0; i < this.hourlyDonuts.length; i++) {
-//       sum += this.hourlyDonuts[i];
-//     }
-//     this.dailyDonuts.push(sum);
-//   }
+    this.getTableRow = function() {
+      var tr = "<tr>";
+      console.log(tr);
+       tr += "<td>" + this.location + "</td>";
+      // console.log(tr);
+      this.hourlyDonuts.forEach(function(nDonut) {
+          tr += "<td>" + nDonut +"</td>";
+          console.log(tr);
+      });
+      tr += "<td>" + this.dailyDonuts[0] + "</td>";
+      tr += "</tr>";
+      return tr;
+  };
+};
+var downTown = new shop("Downtown",8,43,4.50);
+var capitolHill = new shop("Capitol Hill",4,37,2.00);
+var southLakeUnion = new shop("Sounth Lake Union", 9,23,6,33);
+var wedgeWood = new shop("Wedgewood",2,28,1.25);
+var ballard = new shop("Ballard",8,5,3.75);
+var shops = [downTown, capitolHill, southLakeUnion, wedgeWood, ballard];
+var makeTable = function(shops){
+var table = "<table id ='table'>  <tr>  <th>Location</th>  <th>8 AM</th>  <th>9 AM</th>  " +
+"<th>10 AM</th>  <th>11 AM</th>  <th>12 PM</th>  <th>1 PM</th><th>2 PM</th> "+
+"  <th>3 PM</th>  <th>4 PM</th>  <th>5 PM</th>  <th>6 PM</th>  <th>7 PM</th>" +
+"  <th>Total</th>  </tr>";
+
+shops.forEach(function(aShop) {
+  aShop.hourlyDonuts= [];
+  aShop.getAvgDonutSellForHourly();
+
+aShop.dailyDonuts= [];
+  console.log(aShop.hourlyDonuts);
+
+  aShop.getDonutsPerDay();
+  console.log(aShop.dailyDonuts);
+  table += aShop.getTableRow();
+} );
+table += "</table>";
+var container = document.getElementById("container");
+container.innerHTML = table;
+
+ var ctx = document.getElementById("myChart").getContext("2d");
+ var data = {
+     labels: shops.map(function(shop) {return shop.location}),
+     datasets: [
+         {
+             label: "Daily Donuts Productivity",
+             fillColor: "#F7C6E4",
+             strokeColor: "rgba(220,220,220,1)",
+             pointColor: "rgba(220,220,220,1)",
+             pointStrokeColor: "#fff",
+             pointHighlightFill: "#fff",
+             pointHighlightStroke: "rgba(220,220,220,1)",
+             data: shops.map(function(shop){return shop.dailyDonuts})
+         }
+
+     ]
+ };
+ var barChart = new Chart(ctx).Bar(data);
+};
+makeTable(shops);
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+// var butt = document.getElementById('Donuts');
+//  function respond() {
+//   return document.random_imglink();
+//  }
+//   butt.addEventListener('click',respond());
+
+// function random_imglink(){
+// var myimages=new Array()
+
+// myimages[0]="d1.jpg"
+// myimages[1]="d2.jpg"
+// myimages[2]="d3.jpg"
+// myimages[3]="d4.jpg"
+// myimages[4]="d5.jpg"
+// myimages[5]="d6.jpg"
+
+// var photo1=Math.floor(Math.random()*6);
+// document.write('<img src="'+myimages[photo2]+'" border=30px; height=300px>')
 // }
 
-  var Downtown = new donutShop('Downtown', 8, 43, 4.5);
-  var capitalHill = new donutShop ('Capital Hill', 4, 37, 2.00);
-  var sLakeUnion = new donutShop ('South Lake Union', 9, 23, 6.33);
-  var Wedgewood = new donutShop ('Wedgewood', 2, 28, 1.25);
-  var Ballard = new donutShop ('Ballard', 8, 58, 3.75);
+
+var name = document.getElementById("loc");
+var min = document.getElementById("min");
+var max = document.getElementById("max");
+var avg = document.getElementById("avg");
 
 
-   var table = document.createElement('table');
-   var tableRow = document.createElement('tr');
-   var tableDataOne = document.createElement('td');
-   var tableDataTwo = document.createElement('td');
-   var tableDataThree = document.createElement('td');
-   var tableDataFour = document.createElement('td');
-   var tableDataFive = document.createElement('td');
-   
-   // var Downtown = {
-   //     loc: 'Downtown',
-   //     minCPH: 8,
-   //     maxCPH: 43,
-   //     Avg: 4.5,
-   // };
-
-   // var capitalHill = {
-   //     loc: 'Capital Hill',
-   //     minCPH: 4,
-   //     maxCPH: 37,
-   //     Avg: 2.00,
-   // };
-
-   // var sLakeUnion = {
-   // 		loc: 'South Lake Union',
-   // 		minCPH: 9,
-   // 		maxCPH: 23,
-   // 		Avg: 6.33,
-   // };
-
-   // var Wedgewood = {
-   // 		loc: 'Wedgewood',
-   // 		minCPH: 2, 
-   // 		maxCPH: 28,
-   // 		Avg: 1.25,
-   // 	};
-
-   // 	var Ballard = {
-   // 		loc: 'Ballard',
-   // 		minCPH: 8, 
-   // 		maxCPH: 58,
-   // 		Avg: 3.75,
-   // 	};
-   
-   var shops = [Downtown, capitalHill, sLakeUnion, Wedgewood, Ballard];
-
-   var shopTable = document.createElement('table');
-   shops.forEach(function(donut) {
-     var row = document.createElement('tr');
-     var td1 = document.createElement('td');
-     var td2 = document.createElement('td');
-     var td3 = document.createElement('td');
-     var td4 = document.createElement('td');
-     var td5 = document.createElement('td');
-     // var td6 = document.createElement('td');
-     // var td7 = document.createElement('td');
-     var randomCust = donut.randomCust();
-     // var donutsPerHour = donut.donutsPerHour();
-     //  console.log(randomCust);
-
-     td1.textContent = donut.loc;
-     td2.textContent = donut.minCPH;
-     td3.textContent = donut.maxCPH;
-     td4.textContent = donut.Avg; 
-     td5.textContent = randomCust;
-     // td6.textContent = AverageDonutsPerHour;
-     // td7.textContent = totalDonutsPerday;
-
-     row.appendChild(td1);
-     row.appendChild(td2);
- 	   row.appendChild(td3);
-     row.appendChild(td4);
-     row.appendChild(td5);
-     // row.appendChild(td6);
-     // row.appendChild(td7);
 
 
-     shopTable.appendChild(row);
-   });
+var handleAddShopSubmit = function(event) {
+  event.preventDefault();
 
-   document.body.appendChild(shopTable);
- }
+   if ((!event.target.loc.value || !event.target.min.value) || (!event.target.max.value || !event.target.avg.value)) {
+    return alert('Fields cannot be empty!');
+   }
 
-// = ['Downtown', 'Capital Hill', 'South Lake Union', 'Wedgewood', 'Ballard'];
-// var 
+   var store = event.target.loc.value;
+   var minCustomer = event.target.min.value;
+   var maxCustomer = event.target.max.value;
+   var avgDonut = event.target.avg.value;
+
+
+   var newShop = new shop(store,minCustomer,maxCustomer,avgDonut);
+
+   shops.push(newShop);
+   console.log("shops",shops);
+   makeTable(shops);
+
+
+  };
+
+
+addShop.addEventListener('submit', handleAddShopSubmit);forEach
+
+
+function myFunction() {
+    var x = document.createElement("IMG");
+    x.setAttribute("src", "d6.jpg");
+    x.setAttribute("width", '150');
+    x.setAttribute("width", "150");
+
+    document.body.appendChild(x);
+}
