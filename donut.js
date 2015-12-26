@@ -1,4 +1,10 @@
-
+$(document).ready(function(){
+    $("a").hover(function(){
+        $(this).css("color", "red");
+        }, function(){
+        $(this).css("color", "purple");
+    });
+});
 
 function shop(location, minCustomersPerHour, maxCustomersPerHour, avgDonutsPerCustomer) {
   this.location = location;
@@ -149,7 +155,7 @@ var handleAddShopSubmit = function(event) {
   };
 
 
-addShop.addEventListener('submit', handleAddShopSubmit);forEach
+addShop.addEventListener('submit', handleAddShopSubmit);
 
 
 function myFunction() {

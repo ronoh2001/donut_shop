@@ -24,10 +24,11 @@ tr{
     right: 0px;
 }
 #links{
+
 	text-align: center;
 	font-size: 20px;
 	font-family: serif;
-
+	position: relative;
 }
 body{
 	
