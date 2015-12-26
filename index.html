@@ -1,22 +1,60 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-	<link rel="stylesheet" href="text.css">
-
-	<title>The Donut Shop</title>
+  <title>donut_shop</title>
 
 </head>
 <body>
-<h1>The Donut Shop Productivity</h1>	
-	
-	<script src='donut.js'>
+  <img id= 'logo' src='topPotLogo.jpg' height= 100px width = 100px>
+  <img id= 'mat' src='topPotLogo.jpg' height= 100px width = 100px>
+  <div src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></div>
+  <div id="links">
+   <a href="http://www.toppotdoughnuts.com">Visit Us</a>
+   <a href="http://www.toppotdoughnuts.com/about-us.html">Our Story</a>
+   <a href="http://www.toppotdoughnuts.com/doughnuts.html">Doughnuts!</a>
+   <a href="http://www.toppotdoughnuts.com/coffee.html">Coffee</a>
+  </div>
+  <br>
 
-	</script>
+  <h1>Top Pot Donut Productivity</h1>
+
+  <span id = "container"></span>
+
+  <link rel = "stylesheet" href = "text.css">
+
+  <canvas id ='myChart' height = '400' width = '400'></canvas>
+  <script src ='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+</script>
+  <br>
 
 
+<form id = "addShop">
+  <fieldset>
+    <legend>New Location</legend>
 
+    <label for = "location">Location: </label>
+    <input id = "loc" type = "text">
+    <br>
+    <label for = "min">Min Customer Per Hour: </label>
+    <input id = "min" type = "text">
+    <br>
+    <label for = "max">Max Customer Per Hour: </label>
+    <input id = "max" type = "text">
+    <br>
+    <label for = "avg">Average Donuts Per Customer</label>
+    <input id = "avg" type = "text">
+    <button id = "addingbotton" type = "submit">Analyze</button>
+  </fieldset>
+</form>
+<script type = "text/javascript" src = "donut.js"></script>
+
+<button onclick="myFunction()">Make Donuts</button>
 
 </body>
+<footer>
+  <p id='foot'> Designed by Ron Oh CodeFellows 201</p>
+  </footer>
 </html>
